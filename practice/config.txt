@@ -1,0 +1,9 @@
+[DEFAULT]
+tty = telnet
+user = sankar
+pass = Cisco123
+
+[COMMANDS]
+cmd1 = enable
+cmd2 = disable
+
