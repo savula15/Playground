@@ -1,0 +1,35 @@
+Please use this Google doc to code during your interview. To free your hands for coding, we recommend that you use a headset or a phone with speaker option.
+
+class Node(object):
+  def __init__(self):
+    self.next = None
+    self.value = None  # Read-only
+
+'H' -> 'e' -> 'l' .....'d' -> None  ~= 'Hello World I am Roberto'
+'olleH dlroW I ma otreboR'
+
+prev = Node()
+head = prev
+head.value = 'H'
+for c in 'ello World':
+  n = Node()
+  n.value = c
+  prev.next = n
+  prev = n
+
+def reverseWords(head):
+	result = []
+	
+	word = []
+	while head is not None:
+		
+		if head.value == ‘ ‘ or head.next is None:
+			result.append(''.join(word[::-1])) # [‘olleh’,]
+word.append(head.value) #[‘h’, ‘e’, ‘l’, ‘l’, ‘o’]
+		head = head.next
+	return (‘ ’.join(result))
+
+print result # ['olleH', 'dlroW'] # 'olleH dlroW'
+
+
+
