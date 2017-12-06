@@ -20,18 +20,15 @@ class LRUCache:
             self.cache.pop(key)
         except KeyError:
             if len(self.cache) >= self.capacity:
-                self.cache.popitem(key)
+                self.cache.popitem(last=False)
         self.cache[key] = value
 
 l = LRUCache(2)
 l.set(1, 2)
 l.set(3, 4)
-l.set(4, 5)  # flushes out key 3
-l.get(1)
+l.set(4, 5)  # Flushes out key 1
+l.get(1)  # returns -1 as it was flushed
 l.get(3)
+l.get(1)  # returns -1 as it was flushed
 l.get(4)
-l.get(1)
-l.get(4)
-l.set(5, 6)  # flushes out key 4
-l.get(4)
-l.get(1)
+l.set(5, 6)
