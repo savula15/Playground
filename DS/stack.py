@@ -9,10 +9,8 @@ class Stack:
 
     def push(self, item):
         self.items.append(item)
-        print(self.items)
 
     def pop(self):
-        print(self.items)
 
         try:
             return self.items.pop()
