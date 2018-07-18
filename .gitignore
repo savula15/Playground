@@ -1,0 +1,22 @@
+*.swp
+tags
+.git
+
+
+# OSX Related
+.DS_STORE
+
+# Python Related
+__pycache__/
+*.py[cod]
+
+# Framework Related
+o/
+
+#PyTest Related
+.cache
+
+# Coverage Cache
+.coverage
+htmlcov/
+
