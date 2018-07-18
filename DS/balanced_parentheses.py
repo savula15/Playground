@@ -7,6 +7,9 @@ def is_balanced(expr):
 
     """
 
+    if len(expr) == 0:
+        return 'Not Balanced'
+
     opening = set('([{')
     match = set([('(', ')'), ('[', ']'), ('{', '}')])
     s = Stack()
@@ -25,7 +28,7 @@ def is_balanced(expr):
     return 'Balanced' if s.size() == 0 else 'Not Balanced'
 
 
-test_strings = ['{[()]}', '{[(])}', '{{[[(())]]}}']
+test_strings = ['{[()]}', '{[(])}', '{{[[(())]]}}', '']
 
 for test in test_strings:
     print(is_balanced(test))

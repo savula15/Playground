@@ -3,6 +3,7 @@ from stack import Stack
 
 def infix_to_postfix(infix_expr):
     prec = {}
+    prec['**'] = 4
     prec['*'] = 3
     prec['/'] = 3
     prec['+'] = 2
@@ -51,7 +52,9 @@ def postfix_eval(expr):
 
 
 def do_math(op, op1, op2):
-    if op == '*':
+    if op == '**':
+        return op1 ** op2
+    elif op == '*':
         return op1 * op2
     elif op == '/':
         return op1 / op2
@@ -64,3 +67,4 @@ def do_math(op, op1, op2):
 if __name__ == '__main__':
 
     print(postfix_eval('5 + 6 * 7'))
+    print(postfix_eval('5 * 3 ** ( 4 - 2 )'))

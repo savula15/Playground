@@ -1,4 +1,7 @@
 class HashTable:
+    '''Starightforward implementation
+    Doesn't implement chaining
+    '''
 
     def __init__(self):
         self.size = 11  # prime number
@@ -6,6 +9,8 @@ class HashTable:
         self.data = [None] * self.size
 
     def put(self, key, data):
+        # No chaining to handle collisions
+
         hash_value = self.hash_function(key, len(self.slots))
 
         if self.slots[hash_value] is None:
@@ -55,7 +60,6 @@ class HashTable:
 
     def __setitem__(self, key, data):
         self.put(key, data)
-
 
 def main():
     ht = HashTable()

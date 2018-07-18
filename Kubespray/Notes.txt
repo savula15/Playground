@@ -1,0 +1,43 @@
+https://github.com/kubernetes-incubator/kubespray#requirements
+
+2 master
+3 nodes
+
+3 ubuntu VM's
+
+1 ansible host
+
+ubuntu 16.06
+python3
+virtualenv
+
+
+ssh key based authentication
+
+Add following to each node in inventory/mycluster/hosts.ini
+============================================================
+
+ansible_user=test ansible_become=yes ansible_become_pass=ca$hc0w
+
+
+ansible.cfg
+============
+
+add private_key_file=<pem file path>
+
+
+kubespray/roles/kubernetes/preinstall/tasks/verify-settings.yml
+=================================================================
+
+hard-code kubelet_max_pods to 110
+
+
+kubespray needs to set kubelet --fail-swap-on to false
+=======================================================
+
+inventory/mycluster/group_vars/k8s-cluster.yml setting: kubelet_fail_swap_on: false
+
+Too Many nameservers error
+===========================
+
+Add setting docker_dns_servers_strict: false to inventory/mycluster/group_vars/all.yml

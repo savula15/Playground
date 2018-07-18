@@ -7,7 +7,6 @@ def max_element(mylist):
         if v > mr:
             maximum = v
             mr = v
-            print("k==>", k, "v==>", v, "mr==>", mr, "maximum==>", maximum)
     return maximum
 
 
