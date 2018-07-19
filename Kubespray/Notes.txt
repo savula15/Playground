@@ -41,3 +41,19 @@ Too Many nameservers error
 ===========================
 
 Add setting docker_dns_servers_strict: false to inventory/mycluster/group_vars/all.yml
+
+
+Kubectl on utility node
+========================
+Follow the steps below
+
+Create "config" under ~/.kube/
+Reference: https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/
+
+Get server url from master and /etc/k8s/admin.conf
+
+sudo kubectl config --kubeconfig=config set-cluster development --server=https://10.173.47.99:6443 --certificate-authority=/home/test/.kube/ca.pem
+
+sudo kubectl config --kubeconfig=config set-credentials developer --certificate-authority=/home/test/.kube/ca.pem --client-key=/home/test/.kube/admin-node1-key.pem --client-certificate=/home/test/.kube/admin-node1.pem
+
+sudo kubectl config --kubeconfig=config set-context dev --cluster=development --namespace=dev --user=developer
