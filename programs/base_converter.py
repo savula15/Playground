@@ -2,7 +2,7 @@ from .stack import Stack
 
 
 def base_converter(n, b):
-    digits = "0123456789ABCDEF"
+    digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
     s2 = Stack()
     while n > 0:

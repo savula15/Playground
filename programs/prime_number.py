@@ -1,15 +1,11 @@
 def prime_number(n):
-    sqrt_n = int(n**0.5)
-
-    if n > 1:
-        for i in range(2, sqrt_n):
-            if n % i == 0:
-                return 0
-        else:
-            return 1
-    else:
-        return 0
-
+    if n < 1:
+        return False
+    elif n == 1 or n == 2:
+        return True
+    elif n>2 and n%2 == 0:
+        return False
+    return all(n%i for i in range(3, int(math.sqrt(n))+1, 2))
 
 if prime_number(2):
     print("2 is prime number")
