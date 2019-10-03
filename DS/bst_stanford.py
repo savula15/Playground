@@ -1,4 +1,5 @@
 class TreeNode(object):
+
 	def __init__(self, key, left=None, right=None, parent=None):
 		self.key = key
 		self.left = left
@@ -32,7 +33,7 @@ def size(root):
 	else:
 		return 1 + size(root.left) + size(root.right)
 
- def maxDepth(root):
+def maxDepth(root):
 	if root == None:
 		return 0
 	else:
@@ -88,13 +89,13 @@ def mirror(root):
 	else:
 		mirror(root.left)
 		mirror(root.right)
-        root.left, root.right = root.right, root.left
+		root.left, root.right = root.right, root.left
 
 def doubleTree(root):
 	if root == None:
 		return
 	else:
-        doubleTree(root.left)
+		doubleTree(root.left)
 		doubleTree(root.right)
 		oldLeft = root.left
 		root.left = TreeNode(root.key)
@@ -122,7 +123,7 @@ def isBST(root):
  values are >= min and <= max.
 """
 
-def isBSTUtil(root, amin, amax) {
+def isBSTUtil(root, amin, amax):
   if root == None:
       return True
 
