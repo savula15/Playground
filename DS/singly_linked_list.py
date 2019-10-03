@@ -342,11 +342,12 @@ class OrderedLinkedList(object):
 			fast.setNext(None)
     
     def pop(self):
+        if self.head is None:
+            return
 		current = self.head
-		prev = None
-		nextNode = current.getNext()
-		self.head = nextNode
-		return current.getData()
+        result = current.data
+		self.head = current.nextNode
+		return result
 
     def printItems(self):
 		current = self.head
@@ -362,6 +363,7 @@ class OrderedLinkedList(object):
 				return current
 			index += 1
 			current = current.getNext()
+        return
 
     def append(self, alist):
 		n = self.size()
@@ -379,9 +381,14 @@ class OrderedLinkedList(object):
     def removeDuplicates(self):
 		current = self.head
 		while current:
-			while current.nextNode and current.nextNode.data  == current.data:
-				current.nextNode = current.nextNode.nextNode
+            runner = current
+			while runner.nextNode:
+                if runner.nextNode.data  == current.data:
+                    runner.nextNode = runner.nextNode.nextNode
+                else:
+                    runner = runner.nextNode
 			current = current.nextNode
+        return ll.head
 
     def __iter__(self):
 		current = self.head

@@ -1,5 +1,5 @@
 def selection_sort(A):
-    '''Runtime: O(n**2) performs beteer when compared to bubble sort
+    '''Runtime: O(n**2) performs better when compared to bubble sort
     This is due to the reduction in the number of exchanges'''
 
     for fillslot in range(len(A)-1, 0, -1):

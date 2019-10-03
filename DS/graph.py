@@ -66,7 +66,7 @@ def build_graph(wordfile):
             if bucket in d:
                 d[bucket].append(word)
             else:
-                d[bucket] = word
+                d[bucket] = [word]
 
     for bucket in d.keys():
         for word1 in d[bucket]:

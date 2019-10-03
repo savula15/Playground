@@ -43,11 +43,14 @@ def anagram2(s1, s2):
     deceive by looking "just" at "while" loop
     '''
 
-    alist1 = list(s1)
-    alist2 = list(s2)
+    # alist1 = list(s1)
+    # alist2 = list(s2)
 
-    alist1.sort()
-    alist2.sort()
+    # alist1.sort()
+    # alist2.sort()
+
+    alist1 = sorted(s1)
+    alist2 = sorted(s2)
 
     pos = 0
     matches = True
@@ -84,34 +87,52 @@ def anagram3(s1, s2):
     pass
 
 
-def anagram4(s1, s2):
-    ''' Algorithm that takes approach of counting occurances of characters in each string and
-    then compare two count lists if they are equal.
+# def anagram4(s1, s2):
+#     ''' Algorithm that takes approach of counting occurances of characters in each string and
+#     then compare two count lists if they are equal.
 
-    If they are equal then s1 and s2 are anagrams else they are not
+#     If they are equal then s1 and s2 are anagrams else they are not
+#     '''
+
+#     c1 = [0] * 26  # This is because there are 26 alphabets
+#     c2 = [0] * 26
+
+#     for i in range(len(s1)):
+#         pos = ord(s1[i]) - ord('a')
+#         c1[pos] += 1
+
+#     for i in range(len(s2)):
+#         pos = ord(s2[i]) - ord('a')
+#         c2[pos] += 1
+
+#     j = 0
+#     still_ok = True
+
+#     while j < 26 and still_ok:
+#         if c1[j] == c2[j]:
+#             j += 1
+#         else:
+#             still_ok = False
+#     return still_ok
+
+def anagram4(s1, s2):
+    ''' O(n) and space O(1) needs for count chars
+    also optimizes by using only counter list
     '''
 
-    c1 = [0] * 26  # This is because there are 26 alphabets
-    c2 = [0] * 26
+    if not s1 or not s2 or len(s1) != len(s2):
+        return False
+
+    c = [0] * 256
 
     for i in range(len(s1)):
         pos = ord(s1[i]) - ord('a')
-        c1[pos] += 1
+        c[pos] += 1
+    for j in range(len(s2)):
+        pos = ord(s2[j]) - ord('a')
+        c[pos] -= 1
 
-    for i in range(len(s2)):
-        pos = ord(s2[i]) - ord('a')
-        c2[pos] += 1
-
-    j = 0
-    still_ok = True
-
-    while j < 26 and still_ok:
-        if c1[j] == c2[j]:
-            j += 1
-        else:
-            still_ok = False
-    return still_ok
-
+    return not any(c)
 
 print(anagram4('abcd', 'cdba'))
 print(anagram4('abde', 'cdba'))

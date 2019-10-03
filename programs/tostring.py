@@ -36,18 +36,23 @@ print(to_string2(876, 10))
 print(to_string2(876, 2))
 
 
-def a_to_i(astring):
-    number = 0
+def atoi(s):
+    if len(s) == 0:
+        return 0
 
-    if astring[0] == '-':
-        temp = -1
-    else:
-        for digit in astring[1:]:
-            number *= 10 + int(digit)
+    sign = 1
+    res = 0
+    i = 0
 
-    if temp < 1:
-        return number * -1
-    else:
-        return number
+    if s[i] == '-':
+        sign = -1
+        i += 1
 
-print(a_to_i("-876"))
+    for j in range(i, len(s)):
+        if not (s[j] >= '0' and s[j] <= '9'):
+            return 0
+        res = res * 10 + (ord(s[j]) - ord('0'))
+    
+    return sign * res
+
+assert atoi('876') == 876
