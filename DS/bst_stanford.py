@@ -110,6 +110,10 @@ def sameTree(aRoot, bRoot):
 		else:
 		     return False
 
+import sys
+INT_MIN = -(sys.maxsize)-1
+INT_MAX = sys.maxsize
+
 def isBST(root):
   return(isBSTUtil(root, INT_MIN, INT_MAX))
 
@@ -119,11 +123,11 @@ def isBST(root):
 """
 
 def isBSTUtil(root, amin, amax) {
-  if root== None:
+  if root == None:
       return True
 
   #false if this node violates the min/max constraint
-  if (root.key<amin or root.key>amax):
+  if root.key < amin or root.key > amax:
     return False
 
   # otherwise check the subtrees recursively, tightening the min or max constraint
