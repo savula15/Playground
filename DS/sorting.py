@@ -11,7 +11,23 @@ In-Place, IP -->Does not require Extra-Space, Memory efficient
 Not In-Place, NP -->Requires Extra-Space, Not Memory efficient
 
 """
+def selectionSort(alist):
+    """
+    IP and S?
 
+    Time: O(n**2)
+    Space: O(1)
+
+    Useful: https://www.interviewcake.com/concept/python3/selection-sort
+
+    """
+
+    for i in range(len(alist)):
+        smallestIndex = i
+        for j in range(i+1, len(alist)):
+            if alist[j] < alist[smallestIndex]:
+                smallestIndex = j
+        alist[i], alist[smallestIndex] = alist[smallestIndex], alist[i]
 
 def insertionSort(alist):
     """
@@ -78,6 +94,45 @@ def merge(l, r):
 
     return result
 
+def partition(alist, first, last):
+    pivot = alist[last]
+    leftmark = first
+    rightmark = last - 1
+
+    while leftmark <= rightmark:
+        while leftmark <= last and alist[leftmark] < pivot:
+            leftmark += 1
+        while rightmark >= first and alist[rightmark] >= pivot:
+            rightmark -= 1
+        
+        if leftmark < rightmark:
+            alist[leftmark], alist[rightmark] = alist[rightmark], alist[leftmark]
+        else:
+            alist[last], alist[leftmark] = alist[leftmark], alist[last]
+
+    return leftmark
+
+def quickSortHelper(alist, first, last):
+    # Base case for exiing in recursion loop
+    if first >= last:
+        return
+    
+    # Divide the list into two halves
+    splitPoint = partition(alist, first, last)
+
+    # Recursively sort each half
+    quickSortHelper(alist, first, splitPoint - 1)
+    quickSortHelper(alist, splitPoint + 1, last)
+
+def quickSort(alist):
+    """
+    Time: O(nlogn)
+    Space: O(1), O(logn) for recursive call stack
+
+    Example: [0,8,1,2,7,9,3,4]
+
+    """
+    quickSortHelper(alist, 0, len(alist) - 1)
 
 def buildMaxHeap(alist):
     """
@@ -89,6 +144,8 @@ def buildMaxHeap(alist):
     
 def maxHeapify(alist, i):
     """
+    Time: O(nlogn) but with careful analysis and accouting it will be O(n)
+
     """
 
     left = 2 * i + 1
@@ -106,12 +163,16 @@ def maxHeapify(alist, i):
         maxHeapify(alist, largest)
 
 def siftDown(alist, start, end):
+    """
+    Time: O(nlogn)
+
+    """
     root = start
     while True:
         child = 2 * root + 1
         if child > end:
             break
-        if child + 1 <= end and alist[child] > alist[child + 1]:
+        if child + 1 <= end and alist[child] < alist[child + 1]:
             child += 1
         if alist[root] < alist[child]:
             alist[root], alist[child] = alist[child], alist[root]
@@ -124,8 +185,8 @@ def heapSort(alist):
 
     IP and can be S
 
-    Time: O(nlogn)
-    Space: O(1)
+    Time: O(nlogn) overall
+    Space: O(1) since we are cleverly re-used the space available at end of list to store removed item
 
     Works by visualizing list as a nearly complete binary tree and building/maintaing 
     either max/min heap property

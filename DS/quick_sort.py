@@ -42,7 +42,7 @@ def partition(A, first, last):
 
 
 def partition2(A, first, last):
-    '''pivot will be median of first, last and middle element'''
+    '''pivot will last element'''
 
     temp = [A[first], A[last], A[len(A)//2]]
     pivot = sorted(temp)[1]
